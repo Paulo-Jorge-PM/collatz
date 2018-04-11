@@ -1,0 +1,57 @@
+{{extend 'layout.html'}}
+<p style="position:absolute;top:10px;left:69px;"><strong>Wikipédia:</strong> <a href="https://en.wikipedia.org/wiki/Collatz_conjecture" target="_blank">https://en.wikipedia.org/wiki/Collatz_conjecture</a></p>
+
+<h1>Conjectura de Collatz / Collatz conjecture</h1>
+<p style="font-size:12px;color:gray;">Calculadora automática para a famosa Conjectura de Collatz - criei numa altura em que estava fascinado com este fenómeno matemático, para poder testar sem realizar as contas manualmente. Esta conjetura pode ser resumida da seguinte forma: «Comece com um número inteiro positivo n. Se n for par, divida por 2. Se n for ímpar, multiplique por 3 e some 1. Repita este processo com o novo valor de n, terminando quando atingimos n = 1." O surpreendente deste algoritmo é que não importa qual o número inicial que escolhamos, os últimos 3 números serão sempre 4, 2 e 1». Insere-se na categoria dos Números Maravilhosos e imensos estudiosos têm tentado explicar este fenómeno, considerado de extrema importância e beleza matemática.</p>
+
+<br>
+<div id="box">
+<form>
+<input type="text" id="input" placeholder="Enter number" autocapitalize="off" style="width:300px;" />
+<input type="submit" id="submitbutton" value="Calculate">
+</form>
+</div>
+
+<div id="outputtext"></div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var x;
+        $('#submitbutton').click(function() {
+            x = $('#input').val();
+x=Math.abs(x);
+x=Math.floor(x);
+if ($.isNumeric(x) && x>0) {
+function collatz(x){
+var z = 0;
+var txt = '<h3 style="background:orange;">' + x.toString() + ':</h3>';
+while (x != 1) {
+  if (x % 2 == 0) {
+    x = x / 2;
+txt = txt + x.toString() + "<br>";
+  } 
+  else {
+    x = x * 3 + 1;
+      txt = txt + x.toString() + "<br>";
+  }
+  z++;
+}
+$('#outputtext').html(txt);
+}
+            
+            
+collatz(x);
+}
+        
+else {
+$('#outputtext').html("Erro: não inseriu um número natural maior do que zero!");
+}
+return false;
+        });
+    });
+</script>
+
+
+
+<p style="position:absolute;bottom:10px;left:10px;">By: <a href="http://www.paulojorgepm.net" target="_blank">Paulo Jorge PM</a></p>
